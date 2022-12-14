@@ -9,6 +9,7 @@ import {
 	PluginSettingTab,
 	Setting,
 } from "obsidian";
+import * as DOMPurify from "dompurify";
 
 // Remember to rename these classes and interfaces!
 
@@ -18,7 +19,7 @@ export default class SVGPlugin extends Plugin {
 		element: HTMLElement,
 		context: MarkdownPostProcessorContext
 	) => {
-		element.innerHTML = source;
+		element.innerHTML = DOMPurify.sanitize(source);
 	};
 
 	async onload() {
