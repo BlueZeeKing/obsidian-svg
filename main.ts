@@ -19,7 +19,9 @@ export default class SVGPlugin extends Plugin {
 		element: HTMLElement,
 		context: MarkdownPostProcessorContext
 	) => {
-		element.innerHTML = DOMPurify.sanitize(source);
+		element.innerHTML = DOMPurify.sanitize(source, {
+			USE_PROFILES: { svg: true, html: false, mathMl: false },
+		});
 	};
 
 	async onload() {
